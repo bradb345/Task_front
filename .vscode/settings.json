@@ -1,0 +1,11 @@
+{
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#5e71fe",
+    "titleBar.activeBackground": "#5e71fe",
+    "titleBar.inactiveBackground": "#5e71fe",
+    "statusBar.foreground": "#000",
+    "titleBar.inactiveForeground": "#000",
+    "titleBar.activeForeground": "#000",
+  },
+  "window.title": "TASK-FRONTEND"
+}
