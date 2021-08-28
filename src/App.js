@@ -1,16 +1,160 @@
 import React from 'react'
-import axios from 'axios'
+import { getWords } from './lib/api'
+
+import Button from '@material-ui/core/Button'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import TextField from '@material-ui/core/TextField'
+import Container from '@material-ui/core/Container'
+import { makeStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
+import { concat } from 'async'
+
+
+
+const useStyles = makeStyles((theme) => ({
+
+  paper1: {
+    marginTop: theme.spacing(2),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  layout: {
+    width: 'auto',
+    marginTop: theme.spacing(20),
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
+      width: 600,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
+  },
+  paper: {
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(3),
+    padding: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
+      marginTop: theme.spacing(6),
+      marginBottom: theme.spacing(6),
+      padding: theme.spacing(3),
+    },
+  },
+  cardGrid: {
+    paddingTop: theme.spacing(5),
+    paddingBottom: theme.spacing(5),
+    paddingLeft: theme.spacing(7),
+    paddingRight: theme.spacing(7),
+  },
+}))
+
+
+
 
 function App() {
-  React.useEffect(() => {
-    const getData = async () => {
-      const res = await axios.get('/api/endpoint') // * <-- replace with your endpoint
-      console.log(res.data)
-    }
-    getData()
-  })
 
-  return <h1>Hello World</h1>
+  const classes = useStyles()
+
+  const [inputData, setInputData] = React.useState('')
+
+  const postData = { "userInput": inputData }
+
+
+  const handleClick = event => {
+    const input = inputData + event.currentTarget.value
+    setInputData(input)
+  }
+
+  const handleClear = () => {
+    setInputData('')
+  }
+
+  const handleSubmit = async () => {
+    try {
+      const res = await getWords(postData)
+
+      console.log(res.data)
+
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
+
+  return (
+    <main className={classes.layout}>
+      <Paper className={classes.paper}>
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <div className={classes.paper1}>
+
+            <TextField
+              variant="outlined"
+              margin="normal"
+              name="userInput"
+              value={postData.userInput}
+            />
+
+
+
+            <Container className={classes.cardGrid} maxWidth="xs">
+              <Grid container spacing={2} >
+                <Grid item md={4}>
+                  <Button variant="contained" onClick={handleClick} value="1" >1</Button>
+                </Grid>
+                <Grid item md={4}>
+                  <Button variant="contained" onClick={handleClick} value="2">2</Button>
+                </Grid>
+                <Grid item md={4}>
+                  <Button variant="contained" onClick={handleClick} value="3">3</Button>
+                </Grid>
+                <Grid item md={4}>
+                  <Button variant="contained" onClick={handleClick} value="4">4</Button>
+                </Grid>
+                <Grid item md={4}>
+                  <Button variant="contained" onClick={handleClick} value="5">5</Button>
+                </Grid>
+                <Grid item md={4}>
+                  <Button variant="contained" onClick={handleClick} value="6">6</Button>
+                </Grid>
+                <Grid item md={4}>
+                  <Button variant="contained" onClick={handleClick} value="7">7</Button>
+                </Grid>
+                <Grid item md={4}>
+                  <Button variant="contained" onClick={handleClick} value="8">8</Button>
+                </Grid>
+                <Grid item md={4}>
+                  <Button variant="contained" onClick={handleClick} value="9">9</Button>
+                </Grid>
+                <Grid item md={4}></Grid>
+                <Grid item md={4}>
+                  <Button variant="contained" onClick={handleClick} value="0">0</Button>
+                </Grid>
+
+              </Grid>
+            </Container>
+            <Grid>
+
+              <Button
+                onClick={handleSubmit}
+                variant="contained"
+                color="primary">click for words </Button>
+
+
+              <Button
+                onClick={handleClear}
+                variant="contained">clear </Button>
+
+            </Grid>
+
+
+
+          </div>
+        </Container>
+      </Paper>
+    </main>
+  )
 }
 
 export default App

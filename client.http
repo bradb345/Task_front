@@ -1,0 +1,7 @@
+POST http://localhost:4000/api/text
+Content-Type: application/json
+
+{
+  "userInput": "23"
+}
+
