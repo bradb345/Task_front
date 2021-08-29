@@ -8,6 +8,9 @@ import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import Typography from '@material-ui/core/Typography'
 
 
 
@@ -57,8 +60,9 @@ function App() {
   const classes = useStyles()
 
   const [inputData, setInputData] = React.useState('')
+  const [wordData, setWordData] = React.useState('')
 
-  const postData = { "userInput": inputData }
+  const postData = { 'userInput': inputData }
 
 
   const handleClick = event => {
@@ -68,6 +72,7 @@ function App() {
 
   const handleClear = () => {
     setInputData('')
+    setWordData('')
   }
 
   const handleSubmit = async () => {
@@ -75,6 +80,7 @@ function App() {
       const res = await getWords(postData)
 
       console.log(res.data)
+      setWordData(res.data)
 
     } catch (error) {
       console.log(error)
@@ -101,35 +107,35 @@ function App() {
             <Container className={classes.cardGrid} maxWidth="xs">
               <Grid className="keys" container spacing={2} >
                 <Grid item md={4}>
-                  <Button  variant="contained" onClick={handleClick} value="1" >∞<br/>1</Button>
+                  <Button variant="contained" onClick={handleClick} value="1" >∞<br />1</Button>
                 </Grid>
                 <Grid item md={4}>
-                  <Button variant="contained" onClick={handleClick} value="2">abc<br/>2</Button>
+                  <Button variant="contained" onClick={handleClick} value="2">abc<br />2</Button>
                 </Grid>
                 <Grid item md={4}>
-                  <Button variant="contained" onClick={handleClick} value="3">def<br/>3</Button>
+                  <Button variant="contained" onClick={handleClick} value="3">def<br />3</Button>
                 </Grid>
                 <Grid item md={4}>
-                  <Button variant="contained" onClick={handleClick} value="4">ghi<br/>4</Button>
+                  <Button variant="contained" onClick={handleClick} value="4">ghi<br />4</Button>
                 </Grid>
                 <Grid item md={4}>
-                  <Button variant="contained" onClick={handleClick} value="5">jkl<br/>5</Button>
+                  <Button variant="contained" onClick={handleClick} value="5">jkl<br />5</Button>
                 </Grid>
                 <Grid item md={4}>
-                  <Button variant="contained" onClick={handleClick} value="6">mno<br/>6</Button>
+                  <Button variant="contained" onClick={handleClick} value="6">mno<br />6</Button>
                 </Grid>
                 <Grid item md={4}>
-                  <Button variant="contained" onClick={handleClick} value="7">pqrs<br/>7</Button>
+                  <Button variant="contained" onClick={handleClick} value="7">pqrs<br />7</Button>
                 </Grid>
                 <Grid item md={4}>
-                  <Button variant="contained" onClick={handleClick} value="8">tuv<br/>8</Button>
+                  <Button variant="contained" onClick={handleClick} value="8">tuv<br />8</Button>
                 </Grid>
                 <Grid item md={4}>
-                  <Button variant="contained" onClick={handleClick} value="9">wxyz<br/>9</Button>
+                  <Button variant="contained" onClick={handleClick} value="9">wxyz<br />9</Button>
                 </Grid>
                 <Grid item md={4}></Grid>
                 <Grid item md={4}>
-                  <Button variant="contained" onClick={handleClick} value="0">™<br/>0</Button>
+                  <Button variant="contained" onClick={handleClick} value="0">™<br />0</Button>
                 </Grid>
 
               </Grid>
@@ -148,7 +154,15 @@ function App() {
 
             </Grid>
 
-
+            {wordData && wordData.map((word) => (
+              <List key={word} >
+                <ListItem>
+                  <Typography variant="body1" color="textPrimary">
+                    {word}
+                  </Typography>
+                </ListItem>
+              </List>
+            ))}
 
           </div>
         </Container>
