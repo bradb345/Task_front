@@ -98,6 +98,8 @@ function App() {
           <CssBaseline />
           <div className={classes.paper1}>
 
+            <Typography variant="h5" color="textPrimary">Number to Text Converter</Typography>
+
             <TextField
               variant="outlined"
               margin="normal"
