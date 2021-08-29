@@ -136,11 +136,15 @@ function App() {
                 <Grid item md={4}>
                   <Button variant="contained" onClick={handleClick} value="9">wxyz<br />9</Button>
                 </Grid>
-                <Grid item md={4}></Grid>
+                <Grid item md={4}>
+                  <Button variant="contained" onClick={handleClick} value=""><br />*</Button>
+                </Grid>
                 <Grid item md={4}>
                   <Button variant="contained" onClick={handleClick} value="0">™<br />0</Button>
                 </Grid>
-
+                <Grid item md={4}>
+                  <Button variant="contained" onClick={handleClick} value="">#<br />+</Button>
+                </Grid>
               </Grid>
             </Container>
             <Grid>
