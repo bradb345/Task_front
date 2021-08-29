@@ -61,6 +61,7 @@ function App() {
 
   const [inputData, setInputData] = React.useState('')
   const [wordData, setWordData] = React.useState('')
+  const [isError, setIsError] = React.useState(false)
 
   const postData = { 'userInput': inputData }
 
@@ -73,6 +74,7 @@ function App() {
   const handleClear = () => {
     setInputData('')
     setWordData('')
+    setIsError(false)
   }
 
   const handleSubmit = async () => {
@@ -84,6 +86,7 @@ function App() {
 
     } catch (error) {
       console.log(error)
+      setIsError(true)
     }
 
   }
@@ -163,6 +166,12 @@ function App() {
                 </ListItem>
               </List>
             ))}
+
+            {isError && (
+              <p>
+                something went wrong
+              </p>
+            )}
 
           </div>
         </Container>
